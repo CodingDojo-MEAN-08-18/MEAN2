@@ -30,3 +30,64 @@
     </form>
   </fieldset>
 </section>
+
+
+<section>
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Year</th>
+      <th>Actions</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor='let book of books' (click)='onSelect(book)'>
+        <td>{{ book.id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.pages }}</td>
+        <td>Future Actions</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section *ngIf='selectedBook'>
+  <fieldset>
+    <legend>Selected Book</legend>
+
+
+    <div>
+      ID:
+      <p>{{ selectedBook?.id }}</p>
+    </div>
+
+    <div>
+      Title:
+      <p>{{ selectedBook?.title }}</p>
+    </div>
+
+    <div>
+      Author:
+      <p>{{ selectedBook?.author }}</p>
+    </div>
+
+    <div>
+      Pages:
+      <p>{{ selectedBook?.pages }}</p>
+    </div>
+
+    <div>
+      Year:
+      <p>{{ selectedBook?.year }}</p>
+    </div>
+
+    <div>
+      Publisher:
+      <p>{{ selectedBook?.publisher }}</p>
+    </div>
+
+  </fieldset>
+</section>
