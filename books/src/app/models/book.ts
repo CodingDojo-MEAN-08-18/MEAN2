@@ -7,6 +7,6 @@ export class Book {
   publisher: string;
 
   constructor() {
-    this.id = Math.floor(Math.random() * 1000);
+    // this.id = Math.floor(Math.random() * 1000);
   }
 }

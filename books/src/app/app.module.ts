@@ -9,10 +9,13 @@ import * as fromBooks from './books';
 
 import * as fromServices from './services';
 
+import { AppRoutingModule } from './app-routing.module';
+import { NavComponent } from './nav/nav.component';
+
 @NgModule({
-  declarations: [AppComponent, ...fromBooks.components],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
-  providers: [...fromServices.services],
+  declarations: [AppComponent, ...fromBooks.components, NavComponent],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
+  // providers: [...fromServices.services],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

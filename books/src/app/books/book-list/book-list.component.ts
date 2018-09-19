@@ -37,6 +37,23 @@ export class BookListComponent implements OnInit {
   onCreate(book: Book) {
     console.log('creating book', book);
 
-    this.books.push(book);
+    this.bookService.createBook(book).subscribe(createdBook => {
+      // this.books.push(createdBook);
+
+      this.books = [...this.books, createdBook];
+    });
+  }
+
+  onRemove(book: Book) {
+    console.log('removing book', book);
+
+    this.bookService.removeBook(book.id).subscribe(removedBook => {
+      this.books = this.books.filter(b => b.id !== removedBook.id);
+    });
+  }
+
+  onEvent(event: Event) {
+    event.stopPropagation();
+    console.log('eventing');
   }
 }
