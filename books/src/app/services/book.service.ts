@@ -9,11 +9,13 @@ import { Book } from '../models';
   providedIn: 'root',
 })
 export class BookService {
-  private readonly base = 'http://59498bce6d49df0011102cfc.mockapi.io/books/';
+  // private readonly base = 'http://59498bce6d49df0011102cfc.mockapi.io/books/';
+  private readonly base = '/api/books/';
 
   constructor(private http: HttpClient) {}
 
   getBooks(): Observable<Book[]> {
+    console.log('grabbing books');
     return this.http.get<Book[]>(this.base);
   }
 
