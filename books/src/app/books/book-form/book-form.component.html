@@ -1,0 +1,36 @@
+<!--
+  The book form is now able to be used in multiple components. i.e create and update
+
+  Two way data binding had to be disabled to use the safe navigation operator (?.)
+  which results is passing the form to onSubmit, and emitting the form(book) value.
+
+  Content projection is used change the button from Submit to Update (or whatever you want)
+  while not absolutely necessary it does display another feature to investigate when you
+  have time
+ -->
+
+<form (submit)='onSubmit(form)' #form='ngForm'>
+  <input type="hidden" name='_id' [ngModel]='book?._id'>
+  <div>
+    <label for="title">title</label>
+    <input type="text" name='title' [ngModel]='book?.title' required>
+  </div>
+  <div>
+    <label for="">author</label>
+    <input type="text" name='author' [ngModel]='book?.author' required>
+  </div>
+  <div>
+    <label for="">year</label>
+    <input type="text" name='year' [ngModel]='book?.year'>
+  </div>
+  <div>
+    <label for="">pages</label>
+    <input type="text" name='pages' [ngModel]='book?.pages'>
+  </div>
+  <div>
+    <label for="">publisher</label>
+    <input type="text" name='publisher' [ngModel]='book?.publisher'>
+  </div>
+  <!-- read about content projection -->
+  <ng-content *ngIf='form.valid'></ng-content>
+</form>

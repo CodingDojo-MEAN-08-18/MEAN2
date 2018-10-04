@@ -2,31 +2,19 @@
   <fieldset>
     <legend>Create Book</legend>
 
-    {{ form.value | json }}
+    <div *ngIf='errors.length'>
+      <p *ngFor='let error of errors' class="alert alert-danger">
+        {{ error }}
+      </p>
+    </div>
 
-    <form (submit)='onSubmit($event, form)' #form='ngForm'>
-      <div>
-        <label for="title">title</label>
-        <input type="text" name='title' [(ngModel)]='book.title' required>
-      </div>
-      <div>
-        <label for="">author</label>
-        <input type="text" name='author' [(ngModel)]='book.author' required>
-      </div>
-      <div>
-        <label for="">year</label>
-        <input type="text" name='year' [(ngModel)]='book.year'>
-      </div>
-      <div>
-        <label for="">pages</label>
-        <input type="text" name='pages' [(ngModel)]='book.pages'>
-      </div>
-      <div>
-        <label for="">publisher</label>
-        <input type="text" name='publisher' [(ngModel)]='book.publisher'>
-      </div>
-
-      <button *ngIf='form.valid'>Submit</button>
-    </form>
+    <!-- using the new book form component -->
+    <app-book-form [book]='book' (bookEvent)='createBook($event)'>
+      <!--
+        projecting the button into the form component
+        without 'ng-content' in the form the button would not display
+      -->
+      <button>Submit</button>
+    </app-book-form>
   </fieldset>
 </section>

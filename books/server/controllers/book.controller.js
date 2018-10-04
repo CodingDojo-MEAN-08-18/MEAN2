@@ -1,4 +1,5 @@
 const Book = require('mongoose').model('Book');
+const { Http } = require('@status/codes');
 
 module.exports = {
   index(request, response) {
@@ -12,11 +13,11 @@ module.exports = {
     Book.create(request.body)
       .then(book => response.json(book))
       .catch(error => {
-        const errors = Ojbect.keys(error.errors).map(
+        const errors = Object.keys(error.errors).map(
           key => error.errors[key].message
         );
 
-        response.status(500).json(errors);
+        response.status(Http.UnprocessableEntity).json(errors);
       });
   },
   show(request, response) {
@@ -28,15 +29,15 @@ module.exports = {
     Book.findByIdAndUpdate(
       request.params.book_id,
       { $set: request.body },
-      { new: true }
+      { new: true, runValidators: true }
     )
       .then(book => response.json(book))
       .catch(error => {
-        const errors = Ojbect.keys(error.errors).map(
+        const errors = Object.keys(error.errors).map(
           key => error.errors[key].message
         );
 
-        response.status(500).json(errors);
+        response.status(Http.UnprocessableEntity).json(errors);
       });
   },
   destroy(request, response) {

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 
-import { BOOKS } from '../data/book-data';
 import { Book } from '../models';
 
 @Injectable({
@@ -27,7 +26,11 @@ export class BookService {
     return this.http.post<Book>(this.base, book);
   }
 
-  removeBook(id: number): Observable<Book> {
+  updateBook(book: Book): Observable<Book> {
+    return this.http.put<Book>(this.base + book._id, book);
+  }
+
+  removeBook(id: string): Observable<Book> {
     // return this.http.delete<Book>(`${this.base}/${id}`);
     return this.http.delete<Book>(this.base + id);
   }
